@@ -53,7 +53,9 @@
     self.peripherals = [[NSMutableArray alloc] init];
     self.devicesTable.delegate = self;
     self.devicesTable.dataSource = self;
-    
+}
+
+- (void) viewWillAppear:(BOOL)animated {
     if (self.m_connector.m_cm.state == CBCentralManagerStatePoweredOn) {
         [self scanForPeripherals:YES];
     }

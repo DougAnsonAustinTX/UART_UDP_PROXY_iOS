@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="UId-Mc-hHc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="UId-Mc-hHc">
     <dependencies>
         <deployment version="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -31,11 +31,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ptS-2G-Vp2">
-                                                    <rect key="frame" x="8" y="6" width="304" height="30"/>
+                                                    <rect key="frame" x="25" y="6" width="122" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <state key="normal" title="Connect"/>
                                                     <connections>
                                                         <action selector="connectButtonPressed:" destination="UId-Mc-hHc" eventType="touchUpInside" id="5vq-Cc-aUQ"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="33Q-Jr-kp6" userLabel="clearAutoButton">
+                                                    <rect key="frame" x="174" y="6" width="122" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <state key="normal" title="Clear Auto"/>
+                                                    <connections>
+                                                        <action selector="clearAutoButtonPressed:" destination="UId-Mc-hHc" eventType="touchUpInside" id="aUB-Td-9bd"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -53,7 +61,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" editable="NO" id="YjF-9v-LEF">
-                                                    <rect key="frame" x="8" y="8" width="304" height="402"/>
+                                                    <rect key="frame" x="8" y="0.0" width="304" height="402"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -70,6 +78,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="clearAutoButton" destination="33Q-Jr-kp6" id="vmt-uo-VtF"/>
                         <outlet property="connectButton" destination="ptS-2G-Vp2" id="6f1-Sm-VlQ"/>
                         <outlet property="consoleTextView" destination="YjF-9v-LEF" id="o5E-FX-4IU"/>
                         <outlet property="logTextView" destination="E3x-f6-mdl" id="OQZ-ac-2Db"/>

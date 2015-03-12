@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
+@property (weak, nonatomic) IBOutlet UIButton *clearAutoButton;
 @property (weak, nonatomic) IBOutlet UITextView *consoleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *logTextView;
 @property (retain, nonatomic) UartRPC *m_uart_rpc;
@@ -29,6 +30,7 @@
 @property (retain, nonatomic) PreferenceManager *m_preferences;
 
 - (IBAction)connectButtonPressed:(id)sender;
+- (IBAction)clearAutoButtonPressed:(id)sender;
 - (IBAction)clearConsole:(id)sender;
 - (void) writeLog:(NSString *)log;
 

@@ -25,6 +25,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(id<CBCentralManagerDelegate>) parent connector:(CBConnector *) connector prefManager:(PreferenceManager *)preferences;
 - (IBAction)didCancelClicked:(id)sender;
 - (void) switchViews:(UIViewController *)parent_vc;
+- (void) viewWillAppear:(BOOL)animated;
 
 - (void) didReceiveData:(NSString *) string;
 - (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI;

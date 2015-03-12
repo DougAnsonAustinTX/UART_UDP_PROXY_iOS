@@ -167,6 +167,14 @@ typedef enum
     ;
 }
 
+- (IBAction)clearAutoButtonPressed:(id)sender {
+    if (sender == self.clearAutoButton) {
+        [self.m_preferences setPreference:@"DEFAULT_JOIN" withValue:@""];
+        [self.m_preferences setPreference:@"DEFAULT_JOIN_INDEX" withIntValue:-1];
+    }
+    [self connectButtonPressed:nil];
+}
+
 - (IBAction) connectButtonPressed:(id)sender
 {
     switch (self.state) {
@@ -229,7 +237,7 @@ typedef enum
                 break;
             }
             case SCANNING: {
-                [self.connectButton setTitle:@"Cancel Connect..." forState:UIControlStateNormal];
+                [self.connectButton setTitle:@"Cancel..." forState:UIControlStateNormal];
                 [self.view setNeedsDisplay];
                 [self.view setNeedsLayout];
                 break;
@@ -335,6 +343,7 @@ typedef enum
     if (central.state == CBCentralManagerStatePoweredOn)
     {
         [self.connectButton setEnabled:YES];
+        [self.clearAutoButton setEnabled:YES];
     }
     
 }
