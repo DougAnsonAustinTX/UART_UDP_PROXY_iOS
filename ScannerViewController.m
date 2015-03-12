@@ -119,6 +119,32 @@
     return named;
 }
 
+-(BOOL)peripheralMatchesAutoJoin {
+    BOOL matched = NO;
+    
+    ViewController *vc = (ViewController *)self.m_parent;
+    NSString *name = [vc.m_preferences getPreference:@"DEFAULT_JOIN"];
+    for(int i=0;name != nil && name.length > 0 && i<self.peripherals.count && !matched;++i) {
+        ScannedPeripheral *peripheral = (ScannedPeripheral *)[self.peripherals objectAtIndex:i];
+        if ([name isEqualToString:peripheral.name]) {
+            matched = YES;
+        }
+    }
+    
+    return matched;
+}
+
+-(void)bindToPeripheral:(int)index {
+    id<UARTPeripheralDelegate> parent = (id<UARTPeripheralDelegate>)self.m_parent;
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [parent beginConnection:index UARTDelegate:parent withPeripherals:peripherals];
+}
+
+-(int)getAutoJoinIndex {
+    ViewController *vc = (ViewController *)self.m_parent;
+    return [vc.m_preferences getIntPreference:@"DEFAULT_JOIN_INDEX"];
+}
+
 #pragma mark CBCentralManagerDelegate methods
 
 - (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
@@ -136,6 +162,9 @@
         sensor.advertisements = advertisementData;
         sensor.RSSI = RSSI.intValue;
     }
+    
+    // if we find an auto-join defaulted, go ahead and bind
+    if ([self peripheralMatchesAutoJoin]) [self bindToPeripheral:[self getAutoJoinIndex]];
 }
 
 - (void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
@@ -161,9 +190,7 @@
 #pragma mark Table View delegate methods
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<UARTPeripheralDelegate> parent = (id<UARTPeripheralDelegate>)self.m_parent;
-    [self dismissViewControllerAnimated:NO completion:nil];
-    [parent beginConnection:(int)indexPath.row UARTDelegate:parent withPeripherals:peripherals];
+    [self bindToPeripheral:(int)indexPath.row];
 }
 
 #pragma mark Table View Data Source delegate methods

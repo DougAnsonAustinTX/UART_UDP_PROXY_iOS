@@ -125,6 +125,10 @@ typedef enum
     
 }
 
+- (BOOL)autoJoinEnabled {
+    int index = [self.m_preferences getIntPreference:@"DEFAULT_JOIN_INDEX"];
+    return (index >= 0);
+}
 
 - (void)viewDidLoad
 {
@@ -143,6 +147,9 @@ typedef enum
     
     // create our RPC handler
     self.m_uart_rpc = [[UartRPC alloc] init:self];
+    
+    // check for auto bind
+    if ([self autoJoinEnabled]) [self invokeScanner];
 }
 
 - (void)didReceiveMemoryWarning
