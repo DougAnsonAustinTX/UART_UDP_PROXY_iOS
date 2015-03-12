@@ -145,6 +145,15 @@
     return [vc.m_preferences getIntPreference:@"DEFAULT_JOIN_INDEX"];
 }
 
+-(void)reset {
+    [peripherals removeAllObjects];
+    ViewController *vc = (ViewController *)self.m_parent;
+    [vc disconnect];
+    if (self.m_connector.m_cm.state == CBCentralManagerStatePoweredOn) {
+        [self scanForPeripherals:YES];
+    }
+}
+
 #pragma mark CBCentralManagerDelegate methods
 
 - (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {

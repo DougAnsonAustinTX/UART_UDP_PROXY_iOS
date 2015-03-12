@@ -251,6 +251,7 @@ typedef enum
         
         [self addTextToConsole:@"Ready..."];
         [self addTextToConsole:@"Disconnected. Ready..."];
+        self.state = IDLE;
     });
 }
 
@@ -384,6 +385,10 @@ typedef enum
     }
     [self clearConsole:self.consoleTextView];
     [self addTextToConsole:@"Ready..."];
+    
+    // check for auto bind
+    [self.m_scanner reset];
+    if ([self autoJoinEnabled]) [self invokeScanner];
 }
 
 @end
