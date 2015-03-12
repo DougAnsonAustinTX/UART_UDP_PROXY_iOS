@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>964FE9AD-9EAB-438D-AB48-2581D45565C5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>UART_UDP_PROXY</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>97A428F95E2BB616E47544B762781EA9BD0AA030</key>
+		<string>https://github.com/ansondtx20/UART_UDP_PROXY_iOS</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>UART_UDP_PROXY.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>97A428F95E2BB616E47544B762781EA9BD0AA030</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ansondtx20/UART_UDP_PROXY_iOS</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>97A428F95E2BB616E47544B762781EA9BD0AA030</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>97A428F95E2BB616E47544B762781EA9BD0AA030</string>
+			<key>IDESourceControlWCCName</key>
+			<string>UART_UDP_PROXY_iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>

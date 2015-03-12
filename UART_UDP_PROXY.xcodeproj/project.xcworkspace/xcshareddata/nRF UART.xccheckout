@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C7AE64AB-C8AF-425D-B1FA-6B94DEB20A78</string>
+	<key>IDESourceControlProjectName</key>
+	<string>nRF UART</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>31E1D9FC-F589-4E62-BCA2-8454AACE2220</key>
+		<string>http://svn.nordicsemi.no/techsupp</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>nRF UART.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>31E1D9FC-F589-4E62-BCA2-8454AACE2220</key>
+		<string>../../../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>31E1D9FC-F589-4E62-BCA2-8454AACE2220</key>
+		<string>http://svn.nordicsemi.no/techsupp</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://svn.nordicsemi.no/techsupp/apps/ios/nrf_uart/tags/1.0/nRF%20UART/nRF%20UART.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>31E1D9FC-F589-4E62-BCA2-8454AACE2220</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>31E1D9FC-F589-4E62-BCA2-8454AACE2220</string>
+			<key>IDESourceControlWCCName</key>
+			<string>techsupp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

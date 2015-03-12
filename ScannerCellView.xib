@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Kqb-07-mki" imageView="4JD-k1-Slp" rowHeight="50" style="IBUITableViewCellStyleDefault" id="aZD-jC-U55" userLabel="ScannerCell" customClass="ScannerTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aZD-jC-U55" id="6WS-oj-7Q3">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kqb-07-mki">
+                        <rect key="frame" x="60" y="0.0" width="245" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Signal_3" id="4JD-k1-Slp">
+                        <rect key="frame" x="15" y="13" width="30" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvZ-jb-b0I" userLabel="setAsAutoJoinDefaultButton">
+                        <rect key="frame" x="262" y="11" width="49" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="41" id="z6b-re-bz6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <state key="normal" title="Auto"/>
+                        <connections>
+                            <action selector="setAsAutoJoinDefault:" destination="aZD-jC-U55" eventType="touchUpInside" id="4kh-Td-uBQ"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="ZvZ-jb-b0I" secondAttribute="trailing" constant="1" id="kAO-c6-sWP"/>
+                    <constraint firstItem="ZvZ-jb-b0I" firstAttribute="top" secondItem="6WS-oj-7Q3" secondAttribute="topMargin" id="x70-zW-hkZ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ZvZ-jb-b0I" secondAttribute="bottom" constant="2" id="yjY-x2-6m8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+            <connections>
+                <outlet property="setAsAutoJoinDefaultButton" destination="ZvZ-jb-b0I" id="3Ps-r8-Dnf"/>
+                <outlet property="signal" destination="4JD-k1-Slp" id="SY3-lC-pnE"/>
+                <outlet property="title" destination="Kqb-07-mki" id="UkS-iI-pkI"/>
+            </connections>
+            <point key="canvasLocation" x="200" y="-124"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Signal_3" width="320" height="504"/>
+    </resources>
+</document>
