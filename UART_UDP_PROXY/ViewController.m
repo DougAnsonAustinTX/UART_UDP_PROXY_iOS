@@ -150,6 +150,9 @@ typedef enum
     
     // check for auto bind
     if ([self autoJoinEnabled]) [self invokeScanner];
+    
+    // disable sleeping...
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
 - (void)didReceiveMemoryWarning
