@@ -133,7 +133,8 @@ typedef enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    m_max_num_lines = 25;
+    m_num_lines = 0;
     self.consoleTextView.delegate = self;
     self.m_preferences = [[PreferenceManager alloc] init:@"UART_UDP_PROXY"];
     self.m_connector = [[CBConnector alloc] init:self queueName:@"UART_UDP_PROXY"];
@@ -305,8 +306,15 @@ typedef enum
         NSDateFormatter *formatter;
         formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"HH:mm:ss"];
-
-        self.consoleTextView.text = [self.consoleTextView.text stringByAppendingFormat:@"[%@]: %@\n",[formatter stringFromDate:[NSDate date]],string];
+        
+        if (m_num_lines >= m_max_num_lines) {
+            m_num_lines = 1;
+            self.consoleTextView.text = [[NSString  alloc] initWithFormat:@"[%@]: %@\n",[formatter stringFromDate:[NSDate date]],string];
+        }
+        else {
+            ++m_num_lines;
+            self.consoleTextView.text = [self.consoleTextView.text stringByAppendingFormat:@"[%@]: %@\n",[formatter stringFromDate:[NSDate date]],string];
+        }
         
         [self.consoleTextView setScrollEnabled:NO];
         NSRange bottom = NSMakeRange(self.consoleTextView.text.length-1, self.consoleTextView.text.length);
