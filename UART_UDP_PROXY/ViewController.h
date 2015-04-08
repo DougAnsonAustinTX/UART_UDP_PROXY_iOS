@@ -17,6 +17,8 @@
 #import "PreferenceManager.h"
 
 @interface ViewController : UITableViewController <UITextViewDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate, UartRPCProtocol, ScannerDelegate> {
+    int m_max_num_lines;
+    int m_num_lines;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
