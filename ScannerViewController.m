@@ -129,6 +129,7 @@
     for(int i=0;name != nil && name.length > 0 && i<self.peripherals.count && !matched;++i) {
         ScannedPeripheral *peripheral = (ScannedPeripheral *)[self.peripherals objectAtIndex:i];
         if ([name isEqualToString:peripheral.name]) {
+            [vc.m_preferences setPreference:@"DEFAULT_JOIN_INDEX" withIntValue:i];
             matched = YES;
         }
     }
