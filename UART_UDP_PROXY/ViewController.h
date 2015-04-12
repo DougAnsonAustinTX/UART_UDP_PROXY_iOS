@@ -21,7 +21,7 @@
     int m_num_lines;
 }
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearAutoButton;
 @property (weak, nonatomic) IBOutlet UITextView *consoleTextView;
