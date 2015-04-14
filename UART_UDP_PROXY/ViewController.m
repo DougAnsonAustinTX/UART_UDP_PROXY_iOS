@@ -22,6 +22,12 @@ typedef enum
 @end
 
 @implementation ViewController
+
+@synthesize tableView;
+@synthesize connectButton;
+@synthesize clearAutoButton;
+@synthesize consoleTextView;
+@synthesize logTextView;
 @synthesize currentPeripheral = _currentPeripheral;
 @synthesize m_uart_rpc;
 @synthesize m_scanner;
