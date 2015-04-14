@@ -232,7 +232,7 @@
         cell.indexPath = indexPath;
     }
     
-    // Update sensor name
+    // Update sensor name 
     if (peripherals != nil && peripherals.count > indexPath.row) {
         @synchronized(self) {
             ScannedPeripheral *peripheral = [peripherals objectAtIndex:indexPath.row];
