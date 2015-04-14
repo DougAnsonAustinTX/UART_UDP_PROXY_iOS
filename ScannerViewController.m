@@ -126,11 +126,14 @@
     
     ViewController *vc = (ViewController *)self.m_parent;
     NSString *name = [vc.m_preferences getPreference:@"DEFAULT_JOIN"];
-    for(int i=0;name != nil && name.length > 0 && i<self.peripherals.count && !matched;++i) {
-        ScannedPeripheral *peripheral = (ScannedPeripheral *)[self.peripherals objectAtIndex:i];
-        if ([name isEqualToString:peripheral.name]) {
-            [vc.m_preferences setPreference:@"DEFAULT_JOIN_INDEX" withIntValue:i];
-            matched = YES;
+    
+    @synchronized(self) {
+        for(int i=0;name != nil && name.length > 0 && i<self.peripherals.count && !matched;++i) {
+            ScannedPeripheral *peripheral = (ScannedPeripheral *)[self.peripherals objectAtIndex:i];
+            if ([name isEqualToString:peripheral.name]) {
+                [vc.m_preferences setPreference:@"DEFAULT_JOIN_INDEX" withIntValue:i];
+                matched = YES;
+            }
         }
     }
     
@@ -165,18 +168,26 @@
     ScannedPeripheral *sensor = [[ScannedPeripheral alloc] initWithPeripheral:peripheral rssi:RSSI.intValue advertisement:advertisementData];
     if (![peripherals containsObject:sensor])
     {
-        if ([self hasValidName:peripheral])
-            [peripherals addObject:sensor];
+        @synchronized(self) {
+            if ([self hasValidName:peripheral])
+                [peripherals addObject:sensor];
+        }
     }
     else
     {
-        sensor = [peripherals objectAtIndex:[peripherals indexOfObject:sensor]];
-        sensor.advertisements = advertisementData;
-        sensor.RSSI = RSSI.intValue;
+        @synchronized(self) {
+            sensor = [peripherals objectAtIndex:[peripherals indexOfObject:sensor]];
+            sensor.advertisements = advertisementData;
+            sensor.RSSI = RSSI.intValue;
+        }
     }
     
     // if we find an auto-join defaulted, go ahead and bind
-    if ([self peripheralMatchesAutoJoin]) [self bindToPeripheral:[self getAutoJoinIndex]];
+    if ([self peripheralMatchesAutoJoin]) {
+        @synchronized(self) {
+            [self bindToPeripheral:[self getAutoJoinIndex]];
+        }
+    }
 }
 
 - (void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
@@ -222,26 +233,30 @@
     }
     
     // Update sensor name
-    ScannedPeripheral *peripheral = [peripherals objectAtIndex:indexPath.row];
-    cell.title.text = [peripheral name];
-    [cell setAutoJoinStatus];
-    
-    // Update RSSI indicator
-    int RSSI = peripheral.RSSI;
-    UIImage* image;
-    if (RSSI < -90) {
-        image = [UIImage imageNamed: @"Signal_0"];
+    if (peripherals != nil && peripherals.count > indexPath.row) {
+        @synchronized(self) {
+            ScannedPeripheral *peripheral = [peripherals objectAtIndex:indexPath.row];
+            cell.title.text = [peripheral name];
+            [cell setAutoJoinStatus];
+        
+            // Update RSSI indicator
+            int RSSI = peripheral.RSSI;
+            UIImage* image;
+            if (RSSI < -90) {
+                image = [UIImage imageNamed: @"Signal_0"];
+            }
+            else if (RSSI < -70) {
+                image = [UIImage imageNamed: @"Signal_1"];
+            }
+            else if (RSSI < -50) {
+                image = [UIImage imageNamed: @"Signal_2"];
+            }
+            else {
+                image = [UIImage imageNamed: @"Signal_3"];
+            }
+            cell.signal.image = image;
+        }
     }
-    else if (RSSI < -70) {
-        image = [UIImage imageNamed: @"Signal_1"];
-    }
-    else if (RSSI < -50) {
-        image = [UIImage imageNamed: @"Signal_2"];
-    }
-    else {
-        image = [UIImage imageNamed: @"Signal_3"];
-    }
-    cell.signal.image = image;
     return cell;
 }
 
