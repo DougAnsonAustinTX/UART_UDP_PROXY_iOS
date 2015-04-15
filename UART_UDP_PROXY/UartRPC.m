@@ -36,7 +36,7 @@
     m_send_status = NO;
     
     // AsyncUdpSocket configuration
-    m_timeout = 1;                  // 1 second timeout
+    m_timeout = 15;                 // 15 second timeout
     m_receive_buffer_size = 8192;   // UDP socket buffer size
     m_tag = 0;                      // our TAG
     m_send_length = 0;
