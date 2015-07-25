@@ -105,7 +105,7 @@
     @try {
         self.m_fn_id = [rpc_call[0] intValue];
         self.m_args = rpc_call[1];
-        NSLog(@"dispatch(): fn_id=%d rpc_call: {%@} args: [%@]",self.m_fn_id,rpc_call,self.m_args);
+        //NSLog(@"dispatch(): fn_id=%d rpc_call: {%@} args: [%@]",self.m_fn_id,rpc_call,self.m_args);
         
         // dispatch to appropriate function for processing
         switch (self.m_fn_id) {

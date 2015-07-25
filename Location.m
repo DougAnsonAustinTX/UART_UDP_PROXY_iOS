@@ -18,19 +18,46 @@
 -(id)init {
     self = [super init];
     [self checkEnabled];
+    haveLocation = NO;
+    [self initLocationManager];
     return self;
 }
 
+-(void)initLocationManager {
+    if (self.enabled) {
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.delegate = self;
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [locationManager requestWhenInUseAuthorization];
+            [locationManager requestAlwaysAuthorization];
+            if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+                self.enabled = NO;
+                locationManager = nil;
+            }
+            else {
+                NSLog(@"Location: Starting Update...");
+                [locationManager startUpdatingLocation];
+            }
+        }
+    }
+}
+
 -(BOOL)checkEnabled {
-    BOOL is_enabled = YES;
+    self.enabled = [CLLocationManager locationServicesEnabled];
+    if (self.enabled == YES && !([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+        self.enabled = NO;
+    }
     
-    if (is_enabled) {
+    if (self.enabled) {
         // location reporting is enabled...
+        NSLog(@"Location Services are ENABLED");
         self.enabled = YES;
         self.location = @"0.0:0.0:0.0:0.0";
     }
     else {
         // location reporting is disabled...
+        NSLog(@"Location Services are DISABLED");
         self.enabled = NO;
         self.location = @"0.0:0.0:-1.0:-1.0";
     }
@@ -38,13 +65,30 @@
 }
     
 -(void)updateLocation {
-    
-    // can the response for now...
-    self.location = @"-123.45678:-111.11111:99999.9:12345.0";
+    if (self.enabled) {
+        self.location = [NSString stringWithFormat:@"%.5f:%.5f:%.1f:%.1f",
+                            self.myLocation.coordinate.latitude,self.myLocation.coordinate.longitude,
+                            self.myLocation.altitude,self.myLocation.speed];
+    }
 }
     
 -(NSString *)getLocation {
     return self.location;
+}
+
+// CLLocationManagerDelegate
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    haveLocation = NO;
+    if (locations != nil && locations.count > 0) {
+        self.myLocation = [locations lastObject];
+        haveLocation = YES;
+        [self updateLocation];
+    }
+    
+    // DEBUG
+    //if (haveLocation == YES) {
+    //    NSLog(@"Location: latitude: %.5f  longitude: %.5f  altitude: %.1f  speed: %.1f", self.myLocation.coordinate.latitude,self.myLocation.coordinate.longitude, self.myLocation.altitude,self.myLocation.speed);
+    //}
 }
 
 @end
