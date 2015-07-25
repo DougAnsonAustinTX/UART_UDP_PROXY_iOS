@@ -56,6 +56,19 @@ typedef enum
 }
 
 // DA
+-(BOOL)splitAndSendData:(NSString *)data {
+    BOOL sent = NO;
+    NSArray *list = [self splitEqually:data splitLength:(int)20];
+    if (list != nil && list.count > 0) {
+        for(int i=0;i<list.count;++i) {
+            [self sendData:list[i]];
+        }
+        sent = YES;
+    }
+    return sent;
+}
+
+// DA
 -(void)sendData:(NSString *)str_data {
     NSData *data = [str_data dataUsingEncoding:NSUTF8StringEncoding];
     [self logAction:data from:@"UDP" to:@"UART"];
@@ -77,11 +90,8 @@ typedef enum
 -(BOOL)sendOverUART:(NSData *)data {
     NSString *packet = [self.m_uart_rpc rpc_recv_data:data withLength:(int)data.length];
     if (packet != nil) {
-        NSLog(@"sendOverUART(): encoded_data=[%@] length: %d... splitting...",packet,(int)packet.length);
-        NSArray *list = [self splitEqually:packet splitLength:(int)20];
-        for(int i=0;i<list.count;++i) {
-            [self sendData:list[i]];
-        }
+        NSLog(@"sendOverUART(): encoded_data=[%@] length: %d... splitting and sending...",packet,(int)packet.length);
+        [self splitAndSendData:packet];
     }
     else {
         NSLog(@"sendOverUART(): dropping null packet. Base64 encoding failed..");

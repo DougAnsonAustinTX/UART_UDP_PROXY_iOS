@@ -41,6 +41,10 @@
     m_tag = 0;                      // our TAG
     m_send_length = 0;
     
+    // Location support
+    self.m_location = [[Location alloc] init];
+    [self.m_location updateLocation];
+    
     return self;
 }
 
@@ -101,13 +105,16 @@
     @try {
         self.m_fn_id = [rpc_call[0] intValue];
         self.m_args = rpc_call[1];
-        //NSLog(@"dispatch(): fn_id=%d rpc_call: {%@} args: [%@]",self.m_fn_id,rpc_call,self.m_args);
+        NSLog(@"dispatch(): fn_id=%d rpc_call: {%@} args: [%@]",self.m_fn_id,rpc_call,self.m_args);
         
         // dispatch to appropriate function for processing
         switch (self.m_fn_id) {
             case SOCKET_OPEN_FN:
                 success = [self rpc_socket_open:self.m_args];
                 [self.m_handler ackSocketOpen:success];
+                break;
+            case GET_LOCATION_FN:
+                success = [self rpc_get_location:self.m_args];
                 break;
             case SOCKET_CLOSE_FN:
                 success = [self rpc_socket_close:self.m_args];
@@ -159,6 +166,36 @@
     }
     
     return NO;
+}
+
+-(BOOL)rpc_get_location:(NSString *)data {
+    BOOL status = NO;
+    @try {
+        // get the current location
+        NSString *location_payload = [self.m_location getLocation];
+        
+        // encode
+        NSData *data = [location_payload dataUsingEncoding:NSUTF8StringEncoding];
+        NSString *encoded_data = [self encode:data withLength:(int)data.length];
+        
+        // packet
+        NSString *packet = [NSString stringWithFormat:@"[%d|%@]",GET_LOCATION_FN,encoded_data];
+        
+        // send the current location
+        NSLog(@"rpc_get_location(): sending current location packet: %@",packet);
+        
+        // split and send
+        status = [self.m_handler splitAndSendData:packet];
+        if (status == YES)
+            NSLog(@"rpc_get_location():location sent successfully");
+        else
+            NSLog(@"rpc_get_location():location send FAILED");
+    }
+    @catch(NSException *ex) {
+        NSLog(@"rpc_get_location(): sendOverUART() failed: %@",ex.reason);
+    }
+    
+    return status;
 }
 
 -(void)close {
@@ -227,18 +264,20 @@
 
 -(BOOL)rpc_send_data:(NSString *)data {
     m_send_status = NO;
+    // DEBUG
+    NSLog(@"rpc_send_data(): sending %d bytes (encoded) to %@@%d...",(int)data.length,self.m_address,m_port);
     
     // decode out of Base64...
     NSData *raw_bytes = [self decode:data];
     if (self.m_udp_socket != nil && raw_bytes != nil) {
         // send the data over UDP
-        NSLog(@"rpc_send_data(): sending %d bytes to %@@%d...",(int)data.length,self.m_address,m_port);
+        NSLog(@"rpc_send_data(): sending %d bytes (decoded) to %@@%d...",(int)raw_bytes.length,self.m_address,m_port);
         m_send_length = (int)raw_bytes.length;
         [self.m_udp_socket sendData:raw_bytes toHost:self.m_address port:m_port withTimeout:m_timeout tag:m_tag];
         m_send_status = YES;
     }
     else if (self.m_udp_socket != nil) {
-        NSLog(@"send() failed: as data was null or had zero length");
+        NSLog(@"send() failed: as decoded data was null or had zero length");
     }
     else {
         NSLog(@"send() failed: as socket was null");

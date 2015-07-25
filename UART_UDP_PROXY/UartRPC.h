@@ -12,13 +12,15 @@
 #import <Foundation/Foundation.h>
 #import "UartRPCProtocol.h"
 #import "GCDAsyncUdpSocket.h"
+#import "Location.h"
 
 typedef enum
 {
     SOCKET_OPEN_FN  = 0x01,
     SOCKET_CLOSE_FN = 0x02,
     SEND_DATA_FN    = 0x04,
-    RECV_DATA_FN    = 0x08
+    RECV_DATA_FN    = 0x08,
+    GET_LOCATION_FN = 0x16
 } FunctionIDs;
 
 @interface UartRPC : NSObject <GCDAsyncUdpSocketDelegate> {
@@ -40,6 +42,7 @@ typedef enum
 @property (retain, nonatomic)           NSString *m_accumulator;
 @property (retain, nonatomic)           NSString *m_address;
 @property (retain, nonatomic)  GCDAsyncUdpSocket *m_udp_socket;
+@property (retain, nonatomic)  Location          *m_location;
 
 -(id)init:(id<UartRPCProtocol>)handler;
 -(void)stopListener;

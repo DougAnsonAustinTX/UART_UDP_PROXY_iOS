@@ -64,6 +64,7 @@
 -(void)ackSocketOpen:(BOOL)open_ok;
 -(void)onDataReceived:(NSString *)data;
 -(void)sendData:(NSString *)data;
+-(BOOL)splitAndSendData:(NSString *)data;
 -(void)disconnectSocket;
 
 // DA - handle connection to BLE peripheral
