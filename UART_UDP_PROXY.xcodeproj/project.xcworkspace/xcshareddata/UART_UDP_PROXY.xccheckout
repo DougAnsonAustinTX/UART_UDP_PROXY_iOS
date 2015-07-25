@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>964FE9AD-9EAB-438D-AB48-2581D45565C5</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>UART_UDP_PROXY</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5C1013B017CA8C0ABA27A9B651E18C16E5C093E9</key>
 		<string>https://github.com/ansondtx20/UART_UDP_PROXY_iOS</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>UART_UDP_PROXY.xcodeproj/project.xcworkspace</string>
+	<string>UART_UDP_PROXY.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5C1013B017CA8C0ABA27A9B651E18C16E5C093E9</key>
