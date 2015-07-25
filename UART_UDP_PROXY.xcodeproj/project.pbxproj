@@ -340,7 +340,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
-				ORGANIZATIONNAME = "Nordic Semiconductor";
+				ORGANIZATIONNAME = "ARM and Nordic Semi";
 				TargetAttributes = {
 					93C9A60716A0BAAF00E6BF8E = {
 						DevelopmentTeam = H53CRTLJX6;
