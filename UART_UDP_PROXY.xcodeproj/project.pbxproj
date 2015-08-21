@@ -498,14 +498,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Doug Anson (W5N5F74QES)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Doug Anson (W5N5F74QES)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UART_UDP_PROXY/UART_UDP_PROXY-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/UART_UDP_PROXY/UART_UDP_PROXY-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				PRODUCT_NAME = PROXY;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f30e7f67-8d0c-4a3c-9708-8683e686de63";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -515,15 +515,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Doug Anson (W5N5F74QES)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Doug Anson (W5N5F74QES)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UART_UDP_PROXY/UART_UDP_PROXY-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/UART_UDP_PROXY/UART_UDP_PROXY-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				PRODUCT_NAME = PROXY;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "f30e7f67-8d0c-4a3c-9708-8683e686de63";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f30e7f67-8d0c-4a3c-9708-8683e686de63";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
