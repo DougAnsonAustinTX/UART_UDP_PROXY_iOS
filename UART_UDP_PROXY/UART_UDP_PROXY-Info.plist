@@ -36,15 +36,14 @@
 	<string>Location is required to find out where you are</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>location</string>
+		<string>fetch</string>
+		<string>external-accessory</string>
 		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

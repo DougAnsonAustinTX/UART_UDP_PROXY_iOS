@@ -25,25 +25,29 @@
 
 -(void)initLocationManager {
     if (self.enabled) {
-        locationManager = [[CLLocationManager alloc] init];
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         locationManager.delegate = self;
-        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-            [locationManager requestWhenInUseAuthorization];
-            [locationManager requestAlwaysAuthorization];
-            if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
-                self.enabled = NO;
-                locationManager = nil;
-            }
-            else {
-                NSLog(@"Location: Starting Update...");
-                [locationManager startUpdatingLocation];
-            }
+        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+            self.enabled = NO;
+            locationManager = nil;
+        }
+        else {
+            NSLog(@"Location: Starting Update...");
+            [locationManager startUpdatingLocation];
         }
     }
 }
 
 -(BOOL)checkEnabled {
+    // request location services
+    locationManager = [[CLLocationManager alloc] init];
+    
+    // request location services
+    //if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+    //    [locationManager requestWhenInUseAuthorization];
+    [locationManager requestAlwaysAuthorization];
+    
+    // see if they are enabled...
     self.enabled = [CLLocationManager locationServicesEnabled];
     if (self.enabled == YES && !([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
         self.enabled = NO;
